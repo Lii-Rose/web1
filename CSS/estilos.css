@@ -1,22 +1,217 @@
-.parallax h3 {
-    font-size: 1rem;
-    background-color: #6E68BD;
+/* Resets and base styles */
+
+* {
+    margin: 0;
+    
+}
+
+body, html {
+    height: 100%;
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+/* Nav and header styles */
+header {
+    background-color: #ffffff;
+    padding: 1rem;
+}
+
+@media (max-width: 600px) {
+    header {
+        grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
+        text-align: center;
+    }
+
+
+    nav ul {
+        justify-content: center; /* Centra los elementos */
+    }
+
+
+    nav ul li {
+        margin: 5px 10px;
+        white-space: nowrap; /* Evita el salto de línea dentro de los elementos de lista */
+    }
+
+
+    .parallax {
+        padding: 20px;
+    }
+
+
+    .parallax h1 {
+        font-size: 3rem;
+    }
+
+    .container img{
+        max-width: 200px;
+    }
+
 }
 
 
+
+
+.parallax h3 {
+    font-size: 1rem;
+}
+
+.nobarra h2 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #6E68BD;
+    font-size: 2rem;
+}
+    
+
+nav{
+    margin: auto;
+    /*padding es como un borde*/
+    padding: 5px;
+    background-color: #ffffff;  
+}
+
+
+nav ul{
+    /*para que se adapte a la pantalla*/
+    display: flex;
+    /*poner los elementos en el centro de la pantalla*/
+    align-items: center;
+    text-align: center;
+}
 nav ul li{
+    /*Tipografía*/
     font-family: "Roboto", sans-serif;
+    /*display para que en vez de en formato listado vertical salgan en formato listado horizontal*/
     display: inline;
     margin-right: auto;
     margin-left: auto;
     align-items: center ;
 }
 
+
+nav ul li a{
+    color: #000000;
+    /*para que no salga subrayado el texto con enlace*/
+    text-decoration: none;
+    font-size:1rem ;
+}
+
+
+nav ul li a:hover{
+    /*Para que cuando pongas el cursor encima cambie de color*/
+    color: #6E68BD;
+}
+
+
 .logo img {
     width: 3rem;
     height: auto;
 }
 
+
+
+/* Oculta el menú en móviles por defecto */
+#nav-list {
+    display: none; /* Esconde el menú */
+    flex-direction: column; /* Cambia a vertical */
+    position: absolute; /* Para desplegar sobre otros elementos */
+    top: 100%; /* Justo debajo del menú de navegación */
+    left: 0;
+    right: 0;
+    background-color: #ffffff; /* Color de fondo del menú */
+    padding: 1rem 0; /* Espaciado en el menú */
+    z-index: 1; /* Asegura que esté encima de otros elementos */
+}
+
+/* Estilo para mostrar el menú */
+#nav-list.show {
+    display: flex; /* Muestra el menú */
+}
+
+.bar {
+    height: 4px; /* Altura de las barras */
+    width: 30px; /* Ancho de las barras */
+    background-color: #000; /* Color de las barras */
+    margin: 4px 0; /* Espaciado entre barras */
+}
+
+/* Muestra el menú solo en dispositivos móviles */
+@media (min-width: 768px) {
+    #nav-list {
+        display: flex; /* Muestra el menú en dispositivos grandes */
+        position: static; /* El menú ocupa su lugar normal */
+        flex-direction: row; /* Horizontal en pantallas grandes */
+    }
+
+    .menu-toggle {
+        display: none; /* Oculta el ícono de hamburguesa en pantallas grandes */
+    }
+
+
+    .envios{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5%; /* Espacio entre las imágenes */
+        padding: 30px;
+        max-width: 100%; /* Ajusta el valor según sea necesario */
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .envios h3{
+        grid-column: span 1;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 1.5rem;
+        color: #000000;
+        margin-bottom: 15px;
+    }
+    
+    .img-envios{
+        position: relative; /* Necesario para que el overlay funcione */
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        width: 80%; /* Asegura que el contenedor ocupe el ancho disponible */
+        height: 400px; /* Ajusta esta altura según el diseño deseado */
+        margin: 0 auto;
+    }
+    
+    .img-envios img {
+        width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+        height: 100%; /* La imagen ocupa toda la altura del contenedor */
+        object-fit: cover; /* Escala la imagen y la recorta si es necesario, sin deformarla */
+        border-radius: 10px; /* Aplicamos el borde redondeado a la imagen también */
+    }
+    
+    
+    .img-envios:target img {
+        transform: scale(1.1); /* Hace zoom sobre la imagen al pasar el cursor */
+    }
+    
+    
+    .img-envios::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255,171,195, 0.8); 
+        transition: opacity 0.3s ease; /* Suaviza la transición al hacer hover */
+        opacity: 0; /* Inicialmente invisible */
+        z-index: 1;
+    }
+    
+    
+    .img-envios:target::before {
+        opacity: 1; /* Se vuelve visible al pasar el cursor */
+    }
+}
+
+/* Main content styles */
+main {
+    overflow-x: hidden; /* Ensure no overflow from main */
+}
 
 .parallax {
     background-image: url('../IMG/pikaso_edit.png');
@@ -26,11 +221,14 @@ nav ul li{
     background-position: center;
     background-size: cover;
     text-align: center;
-    padding: 100px;
+    padding: 100px; /* Removing padding to prevent overflow */
     background-color: #f1f1f1;
+
 }
 
-.parallax h1{
+
+
+.parallax h1, .parallax h3 {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 5rem;
     color: #fff;
@@ -51,28 +249,15 @@ nav ul li{
 }
 
 
-.alergenos {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 1 rem;
-
-}
-
-
-main {
-    overflow-x: hidden; 
-}
-
-
-.nobarra h2 {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
-
 #bio, #pedidos, #fotos, #amor {
     margin-top: 2rem;
     margin-bottom: 2rem;
     text-align: center;
 }
+
+
+
+
 
 .container {
     position: relative;
@@ -91,7 +276,6 @@ main {
 }
 
 .text {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 1.2em;
     line-height: 1.5;
 }
@@ -105,10 +289,10 @@ main {
 
 .envios{
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px; 
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5%; /* Espacio entre las imágenes */
     padding: 30px;
-    max-width: 100%;
+    max-width: 100%; /* Ajusta el valor según sea necesario */
     margin: 0 auto;
     text-align: center;
 }
@@ -122,25 +306,25 @@ main {
 }
 
 .img-envios{
-    position: relative;
+    position: relative; /* Necesario para que el overlay funcione */
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    width: 80%; 
-    height: 400px; 
+    width: 80%; /* Asegura que el contenedor ocupe el ancho disponible */
+    height: 400px; /* Ajusta esta altura según el diseño deseado */
     margin: 0 auto;
 }
 
 .img-envios img {
-    width: 100%;
-    height: 100%; 
-    object-fit: cover;
-    border-radius: 10px;
+    width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+    height: 100%; /* La imagen ocupa toda la altura del contenedor */
+    object-fit: cover; /* Escala la imagen y la recorta si es necesario, sin deformarla */
+    border-radius: 10px; /* Aplicamos el borde redondeado a la imagen también */
 }
 
 
 .img-envios:hover img {
-    transform: scale(1.1); 
+    transform: scale(1.1); /* Hace zoom sobre la imagen al pasar el cursor */
 }
 
 
@@ -152,14 +336,14 @@ main {
     width: 100%;
     height: 100%;
     background-color: rgba(255,171,195, 0.8); 
-    transition: opacity 0.3s ease; 
-    opacity: 0; 
+    transition: opacity 0.3s ease; /* Suaviza la transición al hacer hover */
+    opacity: 0; /* Inicialmente invisible */
     z-index: 1;
 }
 
 
 .img-envios:hover::before {
-    opacity: 1; 
+    opacity: 1; /* Se vuelve visible al pasar el cursor */
 }
 
 #fotos{
@@ -168,62 +352,70 @@ main {
     text-align: center;
 }
 
-.galleri {
+.gallery {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 10px; 
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas */
+    gap: 10px; /* Espacio entre las imágenes */
     padding: 20px;
-    max-width: 1000px; 
-    margin: 0 auto; 
+    max-width: 1000px; /* Ajusta el valor según sea necesario */
+    margin: 0 auto; /* Centra la cuadrícula horizontalmente */
 }
 
 
-.galleri-item {
-    position: relative;
+.gallery-item {
+    position: relative; /* Necesario para que el overlay funcione */
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 
-.galleri-item img {
+.gallery-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.3s ease; 
+    transition: transform 0.3s ease; /* Suaviza la transición al hacer hover */
 }
 
 
-.galleri-item:hover img {
-    transform: scale(1.1); 
+.gallery-item:hover img {
+    transform: scale(1.1); /* Hace zoom sobre la imagen al pasar el cursor */
 }
 
 
-.galleri-item::before {
+.gallery-item::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255,171,195, 0.8); 
-    transition: opacity 0.3s ease; 
-    opacity: 0; 
+    background-color: rgba(182, 218, 255, 0.8); 
+    transition: opacity 0.3s ease; /* Suaviza la transición al hacer hover */
+    opacity: 0; /* Inicialmente invisible */
     z-index: 1;
 }
 
 
-.galleri-item:hover::before {
-    opacity: 1;
+.gallery-item:hover::before {
+    opacity: 1; /* Se vuelve visible al pasar el cursor */
 }
 
 
 .glitch-embed-wrap{
     width: 100%;
     height:80vh;
+
+
 }
 
+
+
+
+
+
+/* Footer styles */
 footer {
     background-color: #7b68c9;
     color: #fff;
@@ -234,133 +426,4 @@ footer {
 footer li img{
     height: 70px;
     width: auto;
-}
-
-
-
-
-
-@media (max-width: 800px) { 
-    .envios {
-        display: flex;
-        flex-direction: column; 
-        align-items: center; 
-    }
-
-    .envios h3, .img-envios {
-        width: 100%; 
-        margin-bottom: 1rem; 
-    }
-
-    .img-envios {
-        height: 300px;
-    }
-}
-
-@media (max-width: 1180px) {
-    .galleri {
-        grid-template-columns: repeat(2, 1fr); 
-    }
-
-}
-
-@media (max-width: 480px) {
-    .galleri {
-        grid-template-columns: 1fr; 
-    }
-}
-@media (max-width: 900px){
-
-    .parallax h1{
-        text-align:justify;
-        margin-left: -40px;
-    }
-}
-
-
-@media (min-width: 768px) {
-    #nav-list {
-        display: flex; 
-        position: static;
-        flex-direction: row;
-    }
-
-    .menu-toggle {
-        display: none; 
-    }
-
-    .envios{
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 5%;
-        padding: 30px;
-        max-width: 100%;
-        margin: 0 auto;
-        text-align: center;
-    }
-    
-    .envios h3{
-        grid-column: span 1;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        font-size: 1.5rem;
-        color: #000000;
-        margin-bottom: 15px;
-    }
-    
-    .img-envios{
-        position: relative;
-        overflow: hidden;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        width: 80%; 
-        height: 400px;
-        margin: 0 auto;
-    }
-    
-    .img-envios img {
-        width: 100%; 
-        height: 100%; 
-        object-fit: cover; 
-        border-radius: 10px; 
-    }
-    
-    
-    .img-envios:target img {
-        transform: scale(1.1); 
-    }
-    
-    
-    .img-envios::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(255,171,195, 0.8); 
-        transition: opacity 0.3s ease; 
-        opacity: 0;
-        z-index: 1;
-    }
-    
-    
-    .img-envios:target::before {
-        opacity: 1; 
-    }
-    header {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-
-    nav ul {
-        justify-content: center;
-
-    }
-
-
-    nav ul li {
-        margin: 5px 10px;
-        white-space: nowrap;
-    }
 }
