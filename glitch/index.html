@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Deja tus notas y opiniones para que las lea Paquita</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="manifest" href="/manifest.json" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://cdn.glitch.com/cf055531-1057-477e-b1df-29fb92d3e91d%2Fes180t.png"
+    />
+    <meta name="msapplication-TileColor" content="#ffc40d" />
+    <meta name="theme-color" content="#ffc40d" />
+
+    <link rel="stylesheet" href="tachyons.css" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      .expand-enter,
+      .expand-leave-to {
+        position: absolute;
+        top: 48%;
+        left: 20%;
+        right: 20%;
+        bottom: 48%;
+      }
+      .expand-enter *,
+      .expand-leave-to * {
+        opacity: 0;
+      }
+      .expand-enter-active,
+      .expand-leave-active,
+      .expand-enter-active *,
+      .expand-leave-active * {
+        transition: all 0.2s;
+      }
+    </style>
+  </head>
+  <body class="sans-serif">
+    <main class="ma3 measure-wide" id="app">
+      <h2 class="purple"> Deja tu opinión</h2>
+
+      <noscript>
+        <p>
+          Track days/weeks/months until or since big dates and milestones. Add
+          counters for dates you want to remember. This web app requires
+          JavaScript.
+        </p>
+      </noscript>
+
+      <div
+        class="mv3 pa3 white grow pointer"
+        :class="'bg-' + counter.color"
+        v-for="counter in counters"
+        @click="selectedCounter = counter"
+      >
+        <h2 class="mt0">
+          {{ counter.name }}
+        </h2>
+
+        <span>
+          {{getN(counter)}} {{counter.units}} {{counter.direction}}
+          {{counter.target.format('MMM D, YYYY')}}
+        </span>
+      </div>
+
+      <transition name="expand">
+        <div
+          class="absolute top-1 left-1 right-1 bottom-1 z-1"
+          v-if="selectedCounter"
+        >
+          <div
+            class="h-100 white pa1 ph3"
+            :class="'bg-' + selectedCounter.color"
+          >
+            <span class="fr f2 pointer" @click="closeAndSave">&times;</span>
+
+            <div class="center pv2 measure">
+              <div class="flex mt2 mb3">
+                <div
+                  class="w1 h1 ba b--white br-pill mr1 pointer"
+                  :class="'bg-' + color"
+                  v-for="color in colors"
+                  @click="selectedCounter.color = color"
+                ></div>
+              </div>
+
+              <label for="name" class="f6 b db mb2">Name</label>
+              <input
+                id="name"
+                class="input-reset ba b--black-20 pa2 mb2 db f5 w-100"
+                v-model="selectedCounter.name"
+              />
+
+              <label for="units" class="f6 b db mb2">Units</label>
+              <select
+                id="units"
+                class="input-reset ba b--black-20 pa2 mb2 db f5 w-100"
+                v-model="selectedCounter.units"
+              >
+                <option v-for="unit in units">{{unit}}</option>
+              </select>
+
+              <label class="f5 db mb2 mt3">
+                <input
+                  id="direction"
+                  name="since"
+                  value="since"
+                  type="radio"
+                  class="w1 h1"
+                  v-model="selectedCounter.direction"
+                />
+                Since
+              </label>
+
+              <label class="f5 db mb2 mt3">
+                <input
+                  id="direction"
+                  name="until"
+                  value="until"
+                  type="radio"
+                  class="w1 h1"
+                  v-model="selectedCounter.direction"
+                />
+                Until
+              </label>
+
+              <label for="target" class="f6 b db mb2">Date</label>
+              <input
+                type="date"
+                id="target"
+                class="input-reset ba b--black-20 pa2 mb2 db f5 w-100"
+                @input="setDate(selectedCounter, $event)"
+              />
+
+              <p class="f5 tc b">
+                {{getN(selectedCounter)}} {{selectedCounter.units}}
+                {{selectedCounter.direction}}
+                {{selectedCounter.target.format('MMM D, YYYY')}}
+              </p>
+
+              <div class="mv2">
+                <button
+                  class="h2 w4 ph3 br-pill bn bg-white tc pointer dim"
+                  @click="closeAndSave"
+                >
+                  Save
+                </button>
+                <button
+                  class="h2 ph3 br-pill bn bg-white tc pointer dim"
+                  @click="share"
+                >
+                  Share
+                </button>
+
+                <button
+                  class="h2 fr ph3 br-pill bn bg-white red tc pointer dim"
+                  @click="deleteCounter(selectedCounter)"
+                >
+                  Delete
+                </button>
+              </div>
+              <div class="mv2" v-if="showShare">
+                <p>
+                  Share this URL and when somebody goes to it, it will add this
+                  counter into their collection of counters! 🤩
+                </p>
+                <span class="code">{{shareUrl}}</span>
+                <p v-if="copied">
+                  📋 I copied it to your clipboard just now
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </transition>
+
+      <button
+        class="h2 ph3 br-pill bn bg-dark-blue white tc pointer dim"
+        @click="addCounter(null)"
+      >
+        + Counter
+      </button>
+    </main>
+
+    <!-- Glitch button makes it easier to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script src="https://button.glitch.me/button.js"></script>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/sw.js");
+      }
+    </script>
+    <script src="dayjs.js"></script>
+    <!-- Swap to vue.prod.js when ready -->
+    <script src="vue.prod.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

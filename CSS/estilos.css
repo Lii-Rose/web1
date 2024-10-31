@@ -1,0 +1,366 @@
+.parallax h3 {
+    font-size: 1rem;
+    background-color: #6E68BD;
+}
+
+
+nav ul li{
+    font-family: "Roboto", sans-serif;
+    display: inline;
+    margin-right: auto;
+    margin-left: auto;
+    align-items: center ;
+}
+
+.logo img {
+    width: 3rem;
+    height: auto;
+}
+
+
+.parallax {
+    background-image: url('../IMG/pikaso_edit.png');
+    max-width: 100%;
+    min-height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    padding: 100px;
+    background-color: #f1f1f1;
+}
+
+.parallax h1{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 5rem;
+    color: #fff;
+    margin: 0;
+    padding: 10px;
+}
+
+.parallax h3{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.5rem;
+    color: #ffffff
+}
+
+.titulobarra h2 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        color: #6E68BD;
+        font-size: 2rem;
+}
+
+
+.alergenos {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1 rem;
+
+}
+
+
+main {
+    overflow-x: hidden; 
+}
+
+
+.nobarra h2 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+#bio, #pedidos, #fotos, #amor {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.container {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.irregular {
+    float: left;
+    width: 300px;
+    height: auto;
+    clip-path: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%);
+    margin-right: 20px;
+}
+
+.text {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+
+
+#pedidos{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.envios{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px; 
+    padding: 30px;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.envios h3{
+    grid-column: span 1;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.5rem;
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+.img-envios{
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 80%; 
+    height: 400px; 
+    margin: 0 auto;
+}
+
+.img-envios img {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+.img-envios:hover img {
+    transform: scale(1.1); 
+}
+
+
+.img-envios::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,171,195, 0.8); 
+    transition: opacity 0.3s ease; 
+    opacity: 0; 
+    z-index: 1;
+}
+
+
+.img-envios:hover::before {
+    opacity: 1; 
+}
+
+#fotos{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.galleri {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 10px; 
+    padding: 20px;
+    max-width: 1000px; 
+    margin: 0 auto; 
+}
+
+
+.galleri-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+
+.galleri-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease; 
+}
+
+
+.galleri-item:hover img {
+    transform: scale(1.1); 
+}
+
+
+.galleri-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,171,195, 0.8); 
+    transition: opacity 0.3s ease; 
+    opacity: 0; 
+    z-index: 1;
+}
+
+
+.galleri-item:hover::before {
+    opacity: 1;
+}
+
+
+.glitch-embed-wrap{
+    width: 100%;
+    height:80vh;
+}
+
+footer {
+    background-color: #7b68c9;
+    color: #fff;
+    text-align: left;
+    padding: 1rem;
+}
+
+footer li img{
+    height: 70px;
+    width: auto;
+}
+
+
+
+
+
+@media (max-width: 800px) { 
+    .envios {
+        display: flex;
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .envios h3, .img-envios {
+        width: 100%; 
+        margin-bottom: 1rem; 
+    }
+
+    .img-envios {
+        height: 300px;
+    }
+}
+
+@media (max-width: 1180px) {
+    .galleri {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+
+}
+
+@media (max-width: 480px) {
+    .galleri {
+        grid-template-columns: 1fr; 
+    }
+}
+@media (max-width: 900px){
+
+    .parallax h1{
+        text-align:justify;
+        margin-left: -40px;
+    }
+}
+
+
+@media (min-width: 768px) {
+    #nav-list {
+        display: flex; 
+        position: static;
+        flex-direction: row;
+    }
+
+    .menu-toggle {
+        display: none; 
+    }
+
+    .envios{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5%;
+        padding: 30px;
+        max-width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .envios h3{
+        grid-column: span 1;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 1.5rem;
+        color: #000000;
+        margin-bottom: 15px;
+    }
+    
+    .img-envios{
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        width: 80%; 
+        height: 400px;
+        margin: 0 auto;
+    }
+    
+    .img-envios img {
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover; 
+        border-radius: 10px; 
+    }
+    
+    
+    .img-envios:target img {
+        transform: scale(1.1); 
+    }
+    
+    
+    .img-envios::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255,171,195, 0.8); 
+        transition: opacity 0.3s ease; 
+        opacity: 0;
+        z-index: 1;
+    }
+    
+    
+    .img-envios:target::before {
+        opacity: 1; 
+    }
+    header {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+
+    nav ul {
+        justify-content: center;
+
+    }
+
+
+    nav ul li {
+        margin: 5px 10px;
+        white-space: nowrap;
+    }
+}

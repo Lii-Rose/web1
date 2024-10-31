@@ -1,0 +1,17 @@
+{
+  "name"              : "Deja tus opiniones para que Paquita las lea",
+  "short_name"        : "Deja tus opiniones para que Paquita las lea",
+  "description"       : "Days/Weeks/Since/Until",
+  "start_url"         : "/",
+  "display"           : "standalone",
+  "orientation"       : "any",
+  "background_color"  : "#FFF",
+  "theme_color"       : "#FFF",
+  "icons": [
+    {
+      "src"           : "https://cdn.glitch.com/cf055531-1057-477e-b1df-29fb92d3e91d%2Fg10.png",
+      "sizes"         : "512x512",
+      "type"          : "image/png"
+    }
+  ]
+}
